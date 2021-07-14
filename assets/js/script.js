@@ -1,8 +1,9 @@
 // Assignment code here
-var special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
-var number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var upperLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var lowerLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var special = "!@#$%^&*()";
+var number = "0123456789";
+var upperLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowerLetter = "abcdefghijklmnopqrstuvwxyz";
+var allowedCriteria = "";
 
 function generatePassword() {
   var length = parseInt(prompt("Choose the length of your password. Must be between 8 and 128 characters."));
@@ -29,46 +30,45 @@ function generatePassword() {
   }
 
   // Log all the values that the user has entered and append each true value to "allowedCriteria" variable
-  var allowedCriteria = [];
 
   console.log("Length:", length)
   if (confirmNumber) {
-    allowedCriteria = allowedCriteria.concat(number);
+    allowedCriteria += number;
     console.log("Numbers: Yes")
   } else {
     console.log("Numbers: No")
   }
 
   if (confirmSpecial) {
-    allowedCriteria = allowedCriteria.concat(special);
+    allowedCriteria += special;
     console.log("Special Characters: Yes")
   } else {
     console.log("Special Characters: No")
   }
 
   if (confirmUpper) {
-    allowedCriteria = allowedCriteria.concat(upperLetter);
+    allowedCriteria += upperLetter;
     console.log("Uppercase letters: Yes")
   } else {
     console.log("Uppercase letters: No")
   }
 
   if (confirmLower) {
-    allowedCriteria = allowedCriteria.concat(lowerLetter);
+    allowedCriteria += lowerLetter;
     console.log("Lowercase letters: Yes")
   } else {
     console.log("Lowercase letters: No")
   }
   console.log(allowedCriteria);
 
-  var password = [];
-
-  // Random selection of variables
-  for (var i = 0; i <= length; i++) {
-    var randPicks = allowedCriteria[Math.floor(Math.random() * length.length)];
-    password.push(randPicks);
+  // Random selection of characters
+  var password = "";
+  
+  for (var i = 0; i < length; i++) {
+    var genPass = allowedCriteria.charAt([Math.floor(Math.random() * allowedCriteria.length)]);
+    password += genPass;
   }
-  console.log(randPicks)
+  console.log(password)
   return password;
 }
 
